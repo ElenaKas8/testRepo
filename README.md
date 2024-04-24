@@ -1,3 +1,3 @@
 # testRepo
--Oleksandr Harbuz
+- Oleksandr Harbuz
 
