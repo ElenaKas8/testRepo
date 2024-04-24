@@ -1,24 +1,24 @@
 db.reactions.aggregate ([
     {
         $lookup: {
-            from: 'tracks',
-            localField: 'track_id',
-            foreignField: '_id',
-            as: 'track'
+            from: 'tracks', // название коллекции(добавляемой!)
+            localField: 'track_id', // внеш/ключ в тек/коллекции
+            foreignField: '_id', // перв/ключ в связанной коллекции
+            as: 'track' // куда поместить данные
         }
     },
 
     {
         $lookup: {
-            from: 'users',
-            localField: 'author_id',
-            foreignField: '_id',
-            as: 'author'
+            from: 'users', // название коллекции(добавляемой!)
+            localField: 'author_id', // внеш/ключ в тек/коллекции
+            foreignField: '_id', // перв/ключ в связанной коллекции
+            as: 'author' // куда поместить данные
         }
     },
     {$unwind: '$track'},
     {$unwind: '$author'},
-    {$match: {author:{$ne:'Germany'}}},
+    {$match: {'author.country':{$ne:'Germany'}}},
     {
         $group: {
             _id: null,
