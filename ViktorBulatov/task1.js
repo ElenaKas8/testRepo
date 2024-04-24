@@ -20,7 +20,7 @@ db.reactions.aggregate([
     {$match: {'author.country': {$ne: 'Germany'}}},
     {
         $group: {
-            _id: '$track_id',
+            _id: null,
             avg_reaction: {$avg: '$value'}
         }
     }
